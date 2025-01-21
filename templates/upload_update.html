@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Update - Secure OTA System{% endblock %}
+
+{% block content %}
+<h1>Upload OTA Update</h1>
+<p class="info-text">Upload the OTA update file to make it available for distribution:</p>
+
+<form action="/upload_update" method="POST" enctype="multipart/form-data">
+    <label for="file">Select File:</label>
+    <input type="file" id="file" name="file" required>
+
+    <button type="submit">Upload File</button>
+</form>
+
+{% if message %}
+<div class="response-box">
+    <h3>Upload Status:</h3>
+    <p>{{ message }}</p>
+</div>
+{% endif %}
+{% endblock %}

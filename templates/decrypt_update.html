@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Decrypt Update - Secure OTA System{% endblock %}
+
+{% block content %}
+<h1>Decrypt OTA Update</h1>
+<p class="info-text">The encrypted file has been fetched. Use the public key and file to decrypt the update:</p>
+
+<form action="/decrypt_update" method="POST" enctype="multipart/form-data">
+    <label for="file">Encrypted File:</label>
+    <input type="file" id="file" name="file" required>
+    <p class="info-text">Please ensure you upload the file fetched in the previous step.</p>
+
+    <label for="client_public_key_x">Client Public Key (X):</label>
+    <input type="number" id="client_public_key_x" name="client_public_key_x" value="{{ public_key_coords['x'] }}" readonly>
+
+    <label for="client_public_key_y">Client Public Key (Y):</label>
+    <input type="number" id="client_public_key_y" name="client_public_key_y" value="{{ public_key_coords['y'] }}" readonly>
+
+    <button type="submit">Decrypt File</button>
+</form>
+
+{% if decrypt_response %}
+<div class="response-box">
+    <h3>Decryption Result:</h3>
+    <ul>
+        <li><strong>Status:</strong> 
+            <span style="color: {{ 'green' if decrypt_response.status == 'valid' else 'red' }};">
+                {{ decrypt_response.status }}
+            </span>
+        </li>
+        <li><strong>Message:</strong> {{ decrypt_response.message }}</li>
+    </ul>
+</div>
+{% endif %}
+{% endblock %}

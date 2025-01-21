@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Verify Update - Secure OTA System{% endblock %}
+
+{% block content %}
+<h1>Verify OTA Update</h1>
+<p class="info-text">Upload the update file to verify its validity and version:</p>
+
+<form action="/verify_update" method="POST" enctype="multipart/form-data">
+    <label for="file">Select Update File:</label>
+    <input type="file" id="file" name="file" required>
+
+    <label for="version">Version:</label>
+    <input type="text" id="version" name="version" placeholder="Enter version (e.g., 1.0.1)" required>
+
+    <button type="submit">Verify Update</button>
+</form>
+
+{% if verify_response %}
+<div class="response-box">
+    <h3>Verification Result:</h3>
+    <ul>
+        <li><strong>Status:</strong> 
+            <span style="color: {{ 'green' if verify_response.status == 'valid' else 'red' }};">
+                {{ verify_response.status }}
+            </span>
+        </li>
+        <li><strong>Message:</strong> {{ verify_response.message }}</li>
+    </ul>
+</div>
+{% elif message %}
+<p class="error-message">{{ message }}</p>
+{% endif %}
+{% endblock %}

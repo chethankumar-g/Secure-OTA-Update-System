@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Rollback OTA Update{% endblock %}
+
+{% block content %}
+<h1>Rollback to Previous Version</h1>
+<p class="info-text">Select a version to rollback to from the list of available distributed updates:</p>
+
+{% if message %}
+<div class="response-box">
+    <p>{{ message }}</p>
+</div>
+{% endif %}
+
+{% if versions %}
+<form action="/rollback" method="POST">
+    <label for="rollback_version">Select Version:</label>
+    <select id="rollback_version" name="rollback_version" required>
+        <option value="" disabled selected>Select a version</option>
+        {% for version in versions %}
+        <option value="{{ version }}">{{ version }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Rollback</button>
+</form>
+{% else %}
+<p>No available versions for rollback.</p>
+{% endif %}
+{% endblock %}

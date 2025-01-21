@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Secure OTA System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='base.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div style="padding-left:15%;padding-right:15%">
+            <a href="/">Home</a>
+            <a href="/fetch_update">Fetch Update</a>
+            <a href="/decrypt_update">Decrypt Update</a>
+            <a href="/verify_update">Verify Update</a>
+            <a href="/rollback">Rollback</a>
+            <a href="/history">View History</a>
+            <a href="/upload_update">Upload Update</a>
+        </div>
+    </div>
+    <h1>Secure OTA System</h1>
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>

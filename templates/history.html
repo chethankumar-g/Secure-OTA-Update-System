@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Update History - Secure OTA System{% endblock %}
+
+{% block content %}
+<h1>Update History</h1>
+<center>
+<form action="/history" method="POST">
+    <button type="submit">Get History</button>
+</form>
+</center>
+{% if history_response.update_history %}
+<div class="response-box">
+    <p class="info-text">Below is the history of all OTA updates:</p>
+    <h3>History Details:</h3>
+    <ul>
+        {% for update in history_response.update_history %}
+        <li>
+            <strong>Version:</strong> {{ update.version }}<br>
+            <strong>Timestamp:</strong> {{ update.timestamp }}<br>
+            <strong>Status:</strong> {{ update.status }}
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<p class="info-text">No updates have been logged yet.</p>
+{% endif %}
+{% endblock %}

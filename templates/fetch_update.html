@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Fetch Update - Secure OTA System{% endblock %}
+
+{% block content %}
+<h1>Fetch OTA Update</h1>
+<p class="info-text">Click the button below to download the encrypted OTA file:</p>
+
+<form action="/fetch_update" method="POST">
+    <button type="submit">Download Encrypted File</button>
+</form>
+
+{% if fetch_response %}
+<div class="response-box">
+    <h3>Download Details:</h3>
+    <ul>
+        <li><strong>Client Public Key (X):</strong> {{ fetch_response.client_public_key.x }}</li>
+        <li><strong>Client Public Key (Y):</strong> {{ fetch_response.client_public_key.y }}</li>
+    </ul>
+</div>
+{% elif error %}
+<p class="error-message">{{ error }}</p>
+{% endif %}
+{% endblock %}

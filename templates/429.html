@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Too Many Requests{% endblock %}
+
+{% block content %}
+<h1>Too Many Requests</h1>
+<p class="info-text">You have exceeded the allowed number of requests. Please try again later.</p>
+{{ message }}
+{% endblock %}

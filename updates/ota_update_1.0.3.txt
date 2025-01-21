@@ -1,0 +1,3 @@
+This is OTA Update version 1.0.3.
+- Major feature updates.
+- Stability improvements and additional security fixes.
